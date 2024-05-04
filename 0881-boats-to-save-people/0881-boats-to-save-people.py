@@ -5,7 +5,7 @@ class Solution(object):
         :type limit: int
         :rtype: int
         """
-        people.sort(reverse=True)
+        people=sorted(people,reverse=True)
         nb = 0  
         i, j = 0, len(people) - 1 
         while i <= j:
