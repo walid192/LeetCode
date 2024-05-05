@@ -10,8 +10,7 @@ class Solution(object):
         :type node: ListNode
         :rtype: void Do not return anything, modify node in-place instead.
         """
-        if node.next is not None:
-            next_value = node.next.val
-            next_pointer = node.next.next
-            node.val = next_value
-            node.next = next_pointer
+        next_value = node.next.val
+        next_pointer = node.next.next
+        node.val = next_value
+        node.next = next_pointer
