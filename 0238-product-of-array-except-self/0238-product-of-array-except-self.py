@@ -4,27 +4,19 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
-        answer=[]
-        def multiplyList(myList):
-            result = 1
-            for x in myList:
-                result = result * x
-            return result
-        
-        res=multiplyList(nums)
-        
-        for i in range(len(nums)):
-            if(nums[i]==0):
-                pref=nums[:i]
-                suf=nums[i+1:]
-                x,y=multiplyList(pref),multiplyList(suf)
-                answer.append(x*y)
-                
+        ans = []
+        prod = 1
+        for x in nums:
+            prod *= x if x != 0 else 1
+        count0 = nums.count(0)
+        for x in nums:
+            if count0 > 1: 
+                ans.append(0)
+            elif count0 == 1:
+                ans.append(prod if x == 0 else 0)
             else:
-                answer.append(res/nums[i])
-            
-            
-        return answer
+                ans.append(prod//x)
+        return ans   
             
             
         
