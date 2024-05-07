@@ -1,37 +1,39 @@
-# Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
 class Solution(object):
+
+    def reverseNode(self, head):
+        prev,current=None,head
+        while (current):
+            next_node=current.next
+            current.next=prev
+            prev,current=current,next_node
+
+        return prev
+
+
     def doubleIt(self, head):
-        """
-        :type head: Optional[ListNode]
-        :rtype: Optional[ListNode]
-        """
-        reversed_node = self.reverse_node(head)
-        carry = 0
-        current, previous = reversed_node, None
+        newHead=self.reverseNode(head)
+        
+        carry=0
+        prev,current=None,newHead
 
-        while current:
-            new_value = current.val * 2 + carry
-            current.val = new_value % 10
-            carry = 1 if new_value > 9 else 0
-            previous, current = current, current.next
+        while(current):
+            value=current.val*2+carry
+            next_node=current.next
 
-        if carry:
-            previous.next = ListNode(carry)
+            current.val=value%10
+            carry=value//10
 
-        result = self.reverse_node(reversed_node)
+            prev,current=current,next_node
 
-        return result
+        if(carry):
+            prev.next=ListNode(1)
 
-    def reverse_node(self, node) :
-        previous, current = None, node
+        res=self.reverseNode(newHead)
 
-        while current:
-            next_node = current.next
-            current.next = previous
-            previous, current = current, next_node
+        return res
+    
 
-        return previous
+
+        
+    
+    
