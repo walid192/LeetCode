@@ -4,20 +4,15 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
-        ans = []
-        prod = 1
-        for x in nums:
-            prod *= x if x != 0 else 1
-        count0 = nums.count(0)
-        for x in nums:
-            if count0 > 1: 
-                ans.append(0)
-            elif count0 == 1:
-                ans.append(prod if x == 0 else 0)
-            else:
-                ans.append(prod//x)
-        return ans   
-            
+        res = [1]*len(nums)
+        lprod = 1
+        rprod = 1
+        for i in range(len(nums)):
+            res[i] *= lprod
+            lprod *= nums[i]
+            res[~i] *= rprod
+            rprod *= nums[~i]
+        return res
             
         
         
