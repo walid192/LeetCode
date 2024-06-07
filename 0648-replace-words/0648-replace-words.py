@@ -16,7 +16,6 @@ class Solution(object):
 
             return True
 
-        wordsToChange=[]
 
         words=sentence.split(' ')
         for i in range(len(words)):
