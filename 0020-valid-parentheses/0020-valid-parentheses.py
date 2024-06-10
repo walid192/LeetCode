@@ -4,17 +4,32 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        stack = []
-        mapping = {")": "(", "}": "{", "]": "["}
-
+        if s=="":
+            return True
+        
+        stack=[]
+        mapping={
+            "(":")",
+            "{":"}",
+            "[":"]",
+            "":""
+        }
+        
+        if s[0] not in mapping:
+            return False
+        
         for char in s:
             if char in mapping:
-                top_element = stack.pop() if stack else '#'
-                if mapping[char] != top_element:
-                    return False
-            else:
                 stack.append(char)
-        
-        return not stack
+            else:
+                if stack==[]:
+                    return False
+                todel=stack[len(stack)-1]
+                if mapping[todel]==char:
+                    stack.pop()
+                else:
+                    return False
+                
+        return len(stack)==0
                 
         
