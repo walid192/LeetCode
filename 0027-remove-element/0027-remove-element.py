@@ -1,5 +1,3 @@
-from collections import Counter
-
 class Solution(object):
     def removeElement(self, nums, val):
         """
@@ -7,16 +5,10 @@ class Solution(object):
         :type val: int
         :rtype: int
         """
-        count=Counter(nums)
-        k=len(nums)
-        if(val in count):
-            k=len(nums)-count[val]
-
-        for i,num in enumerate(nums):
-            if (num)==val:
-                nums[i]=float('+inf')    
-
-        nums.sort() 
-        return k 
-        
+        k=0
+        for i in range(len(nums)):
+            if(nums[i]!=val):
+                nums[k]=nums[i]
+                k+=1
+        return k
         
