@@ -6,20 +6,14 @@ class Solution(object):
         :type arr2: List[int]
         :rtype: List[int]
         """
-        count=Counter(arr1)
-        j=0
-        for i,num in enumerate(arr2):
-            nbOccu=count[num]
-            for i in range(nbOccu):
-                arr1[i+j]=num
-            j+=nbOccu
+        count = Counter(arr1)
+        result = []
+
+        for num in arr2:
+            result.extend([num] * count[num])
             del count[num]
-        sortedKeys=sorted(count.keys())
-        for key in sortedKeys:
-            nbOccu=count[key]
-            for i in range(nbOccu):
-                arr1[i+j]=key
-            j+=nbOccu
 
+        remaining_elements = sorted(count.elements())
+        result.extend(remaining_elements)
 
-        return(arr1)
+        return result
