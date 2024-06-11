@@ -7,7 +7,6 @@ class Solution(object):
         """
         i=0
         j=len(n)-1
-        res=[]
         while(i<j):
             somme=n[i]+n[j]
             if(somme==target):
