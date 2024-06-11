@@ -11,9 +11,7 @@ class Solution(object):
         while(i<j):
             somme=n[i]+n[j]
             if(somme==target):
-                res.append(i+1)
-                res.append(j+1)
-                return res
+                return [i+1,j+1]
             elif (somme>target):
                 j-=1
             else:
