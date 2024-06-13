@@ -1,3 +1,5 @@
+
+
 class Solution(object):
     def minMovesToSeat(self, seats, students):
         """
@@ -11,9 +13,6 @@ class Solution(object):
         total=0
         for i in range(len(students)):
             d=sortedStudents[i]-sortedSeats[i]
-            if d>0:
-                total+=d
-            else:
-                total-=d
+            total+=abs(d)
                 
         return total
