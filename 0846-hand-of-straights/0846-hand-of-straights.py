@@ -10,6 +10,7 @@ class Solution(object):
             return False
         
         count = Counter(hand)
+        print(count)
     
         sorted_hand = sorted(hand)
 
