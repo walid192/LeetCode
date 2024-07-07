@@ -4,18 +4,15 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        me=nums[0]
         count=0
-        for i in range(len(nums)):
-            if(nums[i]==me):
-                count+=1
-            else:
-                count-=1
-            if(count==0):
-                me=nums[i]
-                count=1
-                
-        if nums.count(me)>len(nums)//2:
-            return me
+        candidate=None
+        for num in nums:
+            if count==0:
+                candidate=num
+            count+=(1 if candidate==num else -1)
+        candidate
+
+        if nums.count(candidate)>len(nums)//2:
+            return candidate
             
         
