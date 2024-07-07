@@ -4,6 +4,18 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        sortedNums=sorted(nums)
-        return sortedNums[len(nums)//2]
+        me=nums[0]
+        count=0
+        for i in range(len(nums)):
+            if(nums[i]==me):
+                count+=1
+            else:
+                count-=1
+            if(count==0):
+                me=nums[i]
+                count=1
+                
+        if nums.count(me)>len(nums)//2:
+            return me
+            
         
