@@ -12,7 +12,6 @@ class Solution(object):
                 if violations > 1:
                     return False
                 
-                # Check if removing nums[i-1] or nums[i] is sufficient
                 if i > 1 and nums[i] <= nums[i - 2]:
                     nums[i] = nums[i - 1]
         
