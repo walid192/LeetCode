@@ -1,17 +1,18 @@
-from collections import defaultdict
-
 class Solution(object):
     def containsDuplicate(self, nums):
         """
         :type nums: List[int]
         :rtype: bool
         """
-        my_dict = defaultdict(int)
+        my_dict = {}
+        
         for num in nums:
-            my_dict[num]+=1
-            if(my_dict[num]>1):
+            if num in my_dict:
                 return True
             
+            else :
+                my_dict[num]=1
+                
         return False
         
         
