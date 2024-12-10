@@ -1,31 +1,32 @@
-from collections import defaultdict
+class Solution:
+    def maximumLength(self, s: str) -> int:
+        n = len(s)
+        l, r = 1, n
 
-class Solution(object):
-    def maximumLength(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
-        subs=defaultdict(int)
-        
-        i=0
-        
-        while(i<len(s)):
-            subs[s[i]]+=1
-            j=i+1
-
-            while(j<len(s) and s[i]==s[j]):
-                subs[s[i:j+1]]+=1
-                j+=1
- 
-            i+=1
-        sorted_values=sorted(subs.items(), key=lambda x: len(x[0]), reverse=True)
-        res=[key for key,value in sorted_values if value>=3 ] 
-        if not res:
+        if not self.helper(s, n, l):
             return -1
+
+        while l + 1 < r:
+            mid = (l + r) // 2
+            if self.helper(s, n, mid):
+                l = mid
+            else:
+                r = mid
+
+        return l
+
+    def helper(self, s: str, n: int, x: int) -> bool:
+        cnt = [0] * 26
+        p = 0
+
+        for i in range(n):
+            while s[p] != s[i]:
+                p += 1
+            if i - p + 1 >= x:
+                cnt[ord(s[i]) - ord('a')] += 1
+            if cnt[ord(s[i]) - ord('a')] > 2:
+                return True
+
+        return False
+
         
-        return len(res[0])        
-        
-        
-        
-                
