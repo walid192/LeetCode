@@ -1,27 +1,32 @@
-class Solution(object):
-    def findMaximizedCapital(self, k, w, profits, capital):
-        """
-        :type k: int
-        :type w: int
-        :type profits: List[int]
-        :type capital: List[int]
-        :rtype: int
-        """
-        projects = list(zip(capital, profits))
-        projects.sort(key=lambda x: x[0])
-
+import heapq
+class Solution:
+    def findMaximizedCapital(self, k: int, w: int, profits: List[int], capital: List[int]) -> int:
+        
+        my_list = list(zip(profits, capital))
+        sorted_values = sorted(my_list, key=lambda x: x[1])
+        
         max_heap = []
-        index = 0
-
+        i = 0 
+        
         for _ in range(k):
-            while index < len(projects) and projects[index][0] <= w:
-                heapq.heappush(max_heap, -projects[index][1]) 
-                index += 1
-
-            if not max_heap:
+            while i < len(sorted_values) and sorted_values[i][1] <= w:
+                profit, _ = sorted_values[i]
+                heapq.heappush(max_heap, -profit)
+                i += 1
+            
+            if max_heap:
+                w -= heapq.heappop(max_heap)  
+            else:
                 break
-
-            w += -heapq.heappop(max_heap)
-
+        
         return w
+
+                
+            
+        
+        
+        
+        
+            
+        
         
