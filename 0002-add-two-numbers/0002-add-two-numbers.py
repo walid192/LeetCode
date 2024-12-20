@@ -18,7 +18,6 @@ class Solution:
             carry = total // 10
             current.next = ListNode(total % 10)
             
-            # Move pointers forward
             current = current.next
             if l1:
                 l1 = l1.next
