@@ -10,36 +10,36 @@ class Node:
 class Solution:
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
         
-        dummy=Node(2)
-        current=dummy
+        if not head:
+            return None
         
-        dummyHead=head
-        while (dummyHead):
-            value=dummyHead.val
-            current.next=Node(value)
-            
-            dummyHead=dummyHead.next
+        value_map={}
+        next_map={}
+        random_map={}
+        
+        current=head
+        
+        while(current):
+            value_map[current]=current.val
+            next_map[current]=current.next
+            random_map[current]=current.random
             current=current.next
-         
-        
-        current=dummy.next
-        dummyHead=head
-        
-        while(dummyHead):
-            n=dummyHead.random
             
-            fast=head
-            suiv=dummy.next
-            
-            while (fast!=n):
-                fast=fast.next
-                suiv=suiv.next
-            current.random=suiv
-            
-            current=current.next
-            dummyHead=dummyHead.next
+        otn_map={}
         
-        return dummy.next
+        for key,value in value_map.items():
+            new=Node(value)
+            otn_map[key]=new
+            
+        
+        for key,value in next_map.items():
+            otn_map[key].next=otn_map.get(value)
+            
+        for key,value in random_map.items():
+            otn_map[key].random=otn_map.get(value)
+            
+        return otn_map[head]
+        
             
         
         
