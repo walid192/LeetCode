@@ -26,21 +26,26 @@ class Solution:
         return res
     
     def merge(self,left,right):
-        dummy = ListNode() 
-        current = dummy
-
-        while left and right:
-            if left.val <= right.val:
-                current.next = left
-                left = left.next
+        dummy=ListNode()
+        cur=dummy
+        
+        while(left and right):
+            if left.val<=right.val:
+                cur.next=ListNode(left.val)
+                left=left.next
             else:
-                current.next = right
-                right = right.next
-            current = current.next
-
+                cur.next=ListNode(right.val)
+                right=right.next
+            cur=cur.next
+                
         if left:
-            current.next = left
+            cur.next=left
         if right:
-            current.next = right
-
+            cur.next=right
+            
         return dummy.next
+        
+                
+        
+        
+            
