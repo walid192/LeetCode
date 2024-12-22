@@ -9,17 +9,20 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
-        result=[]
+        prev = [None]  
         
         def traversePreorder(root):
             if root:
-                result.append(root)
-                traversePreorder(root.left)
-                traversePreorder(root.right)
-            return result
+                if prev[0]:
+                    prev[0].right = root
+                prev[0] = root
+                
+                left = root.left
+                right = root.right
+                
+                root.left = None
+                
+                traversePreorder(left)
+                traversePreorder(right)
         
-        res=traversePreorder(root)
-        
-        for i, node in enumerate(res[:-1]):
-            node.left=None
-            node.right=res[i+1]
+        traversePreorder(root)
