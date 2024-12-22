@@ -19,18 +19,19 @@ class Solution:
         
         while queue:
             level = []
+            prev=None
             for _ in range(len(queue)):
                 current = queue.popleft()
                 level.append(current)
+                
+                if prev:
+                    prev.next=current
+                prev=current
 
                 if current.left:
                     queue.append(current.left)
                 if current.right:
                     queue.append(current.right)
             result.append(level)
-
-        for level in result:
-            for i in range(len(level) - 1):
-                level[i].next = level[i + 1]
 
         return root
