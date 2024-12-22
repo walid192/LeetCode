@@ -12,27 +12,25 @@ class Solution:
     def connect(self, root: 'Node') -> 'Node':
         
         if not root:
-            return None  # Handle the edge case where the tree is empty
+            return None 
 
         result = []
-        queue = [root]  # Initialize the queue with the root node
+        queue = deque([root])
         
         while queue:
             level = []
-            for _ in range(len(queue)):  # Iterate through the current level
-                current = queue.pop(0)  # Dequeue the first element
+            for _ in range(len(queue)):
+                current = queue.popleft()
                 level.append(current)
 
-                # Add left and right children to the queue if they exist
                 if current.left:
                     queue.append(current.left)
                 if current.right:
                     queue.append(current.right)
             result.append(level)
 
-        # Set the 'next' pointers for each level
         for level in result:
-            for i in range(len(level) - 1):  # Skip appending None explicitly
+            for i in range(len(level) - 1):
                 level[i].next = level[i + 1]
 
         return root
