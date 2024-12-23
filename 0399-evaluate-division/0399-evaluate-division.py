@@ -3,7 +3,6 @@ class Solution:
     def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
         
         
-        #create graph
         graph=defaultdict(dict)
         
         for (a,b),value in zip(equations,values):
