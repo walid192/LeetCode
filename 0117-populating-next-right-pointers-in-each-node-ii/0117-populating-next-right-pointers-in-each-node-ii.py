@@ -14,15 +14,12 @@ class Solution:
         if not root:
             return None 
 
-        result = []
         queue = deque([root])
         
         while queue:
-            level = []
             prev=None
             for _ in range(len(queue)):
                 current = queue.popleft()
-                level.append(current)
                 
                 if prev:
                     prev.next=current
@@ -32,6 +29,5 @@ class Solution:
                     queue.append(current.left)
                 if current.right:
                     queue.append(current.right)
-            result.append(level)
 
         return root
