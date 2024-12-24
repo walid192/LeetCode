@@ -1,46 +1,36 @@
-import random
-
-
-class RandomizedSet(object):
+class RandomizedSet:
 
     def __init__(self):
-        self.val_to_index = {}
-        self.values = []
+        self.s=[]
+        self.hashmap={}
         
 
-    def insert(self, val):
-        """
-        :type val: int
-        :rtype: bool
-        """
-        if val in self.val_to_index:
+    def insert(self, val: int) -> bool:
+        if val in self.hashmap:
             return False
-        self.val_to_index[val] = len(self.values)
-        self.values.append(val)
+        self.s.append(val)
+        self.hashmap[val]=len(self.s)-1
         return True
         
 
-    def remove(self, val):
-        """
-        :type val: int
-        :rtype: bool
-        """
-        if val not in self.val_to_index:
+    def remove(self, val: int) -> bool:
+        if not val in self.hashmap:
             return False
-        idx = self.val_to_index[val]
-        last_val = self.values[-1]
-        self.values[idx] = last_val
-        self.val_to_index[last_val] = idx
-        self.values.pop()
-        del self.val_to_index[val]
+        
+        index=self.hashmap[val]
+        self.s[index]=self.s[len(self.s)-1]
+        self.hashmap[self.s[len(self.s)-1]]=index
+        
+        self.s.pop()
+        
+        del self.hashmap[val]
+        
         return True
         
 
-    def getRandom(self):
-        """
-        :rtype: int
-        """
-        return random.choice(self.values)
+    def getRandom(self) -> int:
+        index=random.randint(0, len(self.s)-1)
+        return self.s[index]
         
 
 
