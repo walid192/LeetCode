@@ -6,7 +6,7 @@ class Solution:
 
         for key,value in cnt.items():
             group_size = key + 1 
-            groups = (value + group_size - 1) // group_size
+            groups = math.ceil(value/group_size)
             res += groups * group_size
         return res
         
