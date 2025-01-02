@@ -6,11 +6,9 @@ class Solution:
         if len(s1) > len(s2):
             s1, s2 = s2, s1
 
-        i = 0
+        i, j = 0, 0
         while i < len(s1) and s1[i] == s2[i]:
             i += 1
-
-        j = 0
         while j < len(s1) - i and s1[len(s1) - 1 - j] == s2[len(s2) - 1 - j]:
             j += 1
 
