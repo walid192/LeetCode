@@ -13,9 +13,10 @@ class Solution:
             if value%2!=0:
                 nbreOdd+=1
 
-        if nbreOdd>k:
-            return False
-        return True
+        return nbreOdd<=k
+           
+
+
 
 
 
