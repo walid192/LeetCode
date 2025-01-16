@@ -4,22 +4,16 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
-        posQueue=collections.deque()
-        negQueue=collections.deque()
-        
-        for num in nums:
-            if num>0:
-                posQueue.append(num)
+        pos_index=0
+        neg_index=1
+        arr=[0]*(len(nums))
+
+        for i in range(len(nums)):
+            if nums[i]>0:
+                arr[pos_index]=nums[i]
+                pos_index+=2
             else:
-                negQueue.append(num)
+                arr[neg_index]=nums[i]
+                neg_index+=2
 
-        res=[]
-        
-        while(posQueue or negQueue):
-            p=posQueue.popleft()
-            n=negQueue.popleft()
-
-            res.append(p)
-            res.append(n)
-
-        return res
+        return arr
