@@ -1,5 +1,5 @@
 class Solution:
-    def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
+    def pacificAtlantic(self, grid: List[List[int]]) -> List[List[int]]:
         rows,cols=len(grid),len(grid[0])
 
         pac,atl=set(),set()
